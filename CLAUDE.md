@@ -13,6 +13,7 @@
 - `src/worker/` — Hono API（GET /api/sections, GET /api/articles/:slug）
 - `src/client/` — React SPA（ホーム = 科目/記事カード一覧、記事ページ = 本文 + 問題 + 前後ナビ）
 - `src/shared/` — Worker/プリレンダリング共通のデータ整形（shape.ts）と型
+- `src/client/components/widgets/` — 記事内ウィジェット。本文の `{{widget:name}}` で埋め込む
 - `scripts/prerender.tsx` — ビルド時 SSG。ローカル D1 から全ルートを静的 HTML 化（SEO 対応）
 - `migrations/` — D1 マイグレーション
 - `seed/seed.sql` — 記事・問題のシードデータ
@@ -42,6 +43,7 @@ bun run db:seed:local    # シード投入（local / remote あり）
 - 正規のシラバス（1次試験7科目）の順番・構成に従う
 - 初心者にもわかりやすい表現。全記事を順に読めば合格レベルに達する内容を目指す
 - 各記事に3択の練習問題を3問付与（回答すると正誤と解説を表示）
+- 各記事にインタラクティブウィジェットを1〜3個配置（`{{widget:name}}` + widgets/ に実装）
 - 記事追加はシードデータ（seed/seed.sql）に追記し、remote へ再投入する
 
 ## スタイル

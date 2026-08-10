@@ -44,6 +44,8 @@ INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VA
 
 ニュースで聞く「金利」「円安」「インフレ」といった話はマクロの世界です。
 
+{{widget:micro-macro-sort}}
+
 ## 学習マップ
 
 | 分野 | 主なテーマ |
@@ -89,6 +91,8 @@ INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VA
 
 つまり市場には、価格が自動的に均衡へ向かう調整メカニズムが備わっています。これを**価格の自動調節機能**と呼びます。
 
+{{widget:supply-demand}}
+
 ## まとめ
 
 - 需要曲線は右下がり、供給曲線は右上がり
@@ -108,6 +112,8 @@ INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VA
 - ケーキ1個目は最高においしいが、3個目になると満足の増え方は小さくなる
 
 このように追加の満足が徐々に減っていくことを**限界効用逓減の法則**といいます。
+
+{{widget:marginal-utility}}
 
 ## 道具2: 無差別曲線
 

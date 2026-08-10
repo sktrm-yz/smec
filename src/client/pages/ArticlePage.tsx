@@ -6,7 +6,9 @@ import remarkGfm from "remark-gfm";
 import { ArticleThumb } from "@/components/ArticleThumb";
 import Quiz from "@/components/Quiz";
 import { Card, CardTitle } from "@/components/ui/card";
+import { WIDGETS } from "@/components/widgets";
 import { useInitialData } from "@/data";
+import { splitBody } from "@/lib/article-body";
 import type { Article, ArticleNav } from "@/types";
 
 export default function ArticlePage() {
@@ -57,12 +59,21 @@ export default function ArticlePage() {
       <h2 className="mt-1 text-2xl font-bold tracking-tight">
         {article.title}
       </h2>
-      <div className="prose-article mt-6">
-        <Markdown remarkPlugins={[remarkGfm]}>{article.body}</Markdown>
+      <div className="mt-6">
+        {splitBody(article.body).map((part, i) =>
+          part.type === "markdown" ? (
+            // biome-ignore lint/suspicious/noArrayIndexKey: 本文分割の順序は不変
+            <div key={i} className="prose-article">
+              <Markdown remarkPlugins={[remarkGfm]}>{part.content}</Markdown>
+            </div>
+          ) : (
+            <Widget key={`${part.name}-${i}`} name={part.name} />
+          ),
+        )}
       </div>
 
       {article.questions.length > 0 && (
-        <section className="mt-12">
+        <section className="mt-16 border-t border-border pt-10">
           <h3 className="text-lg font-bold">練習問題</h3>
           <div className="mt-4 flex flex-col gap-6">
             {article.questions.map((q, i) => (
@@ -92,6 +103,12 @@ export default function ArticlePage() {
       </div>
     </article>
   );
+}
+
+function Widget({ name }: { name: string }) {
+  const Component = WIDGETS[name];
+  if (!Component) return null;
+  return <Component />;
 }
 
 function NavCard({

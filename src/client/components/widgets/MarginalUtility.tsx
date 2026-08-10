@@ -28,7 +28,7 @@ export function MarginalUtilityWidget() {
         <div className="flex h-28 items-end gap-1.5 rounded-lg border border-border bg-background p-3">
           {MU.map((mu, i) => (
             <div
-              key={`cake-${i + 1}`}
+              key={`cake-${mu}`}
               className="flex flex-1 flex-col items-center gap-1"
             >
               <div

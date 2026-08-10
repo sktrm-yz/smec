@@ -67,6 +67,7 @@ export default function ArticlePage() {
               <Markdown remarkPlugins={[remarkGfm]}>{part.content}</Markdown>
             </div>
           ) : (
+            // biome-ignore lint/suspicious/noArrayIndexKey: 本文分割の順序は不変
             <Widget key={`${part.name}-${i}`} name={part.name} />
           ),
         )}

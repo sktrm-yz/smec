@@ -7,11 +7,6 @@ type Row = Record<string, unknown>;
 function fakeDb(data: { sections: Row[]; articles: Row[]; questions: Row[] }) {
   const run = (sql: string, params: unknown[]) => {
     if (sql.includes("FROM sections")) return data.sections;
-    if (sql.includes("JOIN sections")) {
-      return data.articles.filter(
-        (a) => a.slug === params[0] && a.body !== null,
-      );
-    }
     if (sql.includes("FROM articles")) return data.articles;
     if (sql.includes("FROM questions")) {
       return data.questions.filter((q) => q.article_id === params[0]);
@@ -32,7 +27,13 @@ function fakeDb(data: { sections: Row[]; articles: Row[]; questions: Row[] }) {
 
 const db = fakeDb({
   sections: [
-    { id: 1, slug: "economics", name: "経済学・経済政策", description: "d" },
+    {
+      id: 1,
+      slug: "economics",
+      name: "経済学・経済政策",
+      description: "d",
+      sort_order: 1,
+    },
   ],
   articles: [
     {
@@ -42,9 +43,7 @@ const db = fakeDb({
       title: "経済学入門",
       summary: "s",
       body: "## 本文",
-      published: 1,
-      section_name: "経済学・経済政策",
-      section_slug: "economics",
+      sort_order: 101,
     },
     {
       id: 102,
@@ -53,7 +52,7 @@ const db = fakeDb({
       title: "準備中の記事",
       summary: "s",
       body: null,
-      published: 0,
+      sort_order: 102,
     },
   ],
   questions: [
@@ -92,9 +91,14 @@ describe("GET /articles/:slug", () => {
     const res = await request("/articles/econ-intro");
     expect(res.status).toBe(200);
     const json = (await res.json()) as {
-      article: { title: string; questions: { choices: string[] }[] };
+      article: {
+        title: string;
+        no: string;
+        questions: { choices: string[] }[];
+      };
     };
     expect(json.article.title).toBe("経済学入門");
+    expect(json.article.no).toBe("1-1");
     expect(json.article.questions).toHaveLength(1);
     expect(json.article.questions[0].choices).toEqual(["a", "b", "c"]);
   });

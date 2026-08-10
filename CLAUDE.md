@@ -11,15 +11,19 @@
 ## 構成
 
 - `src/worker/` — Hono API（GET /api/sections, GET /api/articles/:slug）
-- `src/client/` — React SPA（ホーム = 科目/記事一覧、記事ページ = 本文 + 問題）
+- `src/client/` — React SPA（ホーム = 科目/記事カード一覧、記事ページ = 本文 + 問題 + 前後ナビ）
+- `src/shared/` — Worker/プリレンダリング共通のデータ整形（shape.ts）と型
+- `scripts/prerender.tsx` — ビルド時 SSG。ローカル D1 から全ルートを静的 HTML 化（SEO 対応）
 - `migrations/` — D1 マイグレーション
 - `seed/seed.sql` — 記事・問題のシードデータ
+
+公開 URL: https://smec.mori22.com（wrangler.jsonc の custom_domain ルート）
 
 ## コマンド
 
 ```sh
 bun run dev              # Vite 開発サーバ（API は wrangler dev と併用）
-bun run build            # クライアントビルド
+bun run build            # クライアントビルド + プリレンダリング（要: ローカル D1 シード済み）
 bun run deploy           # ビルド + wrangler deploy
 bun run test             # vitest
 bun run lint             # biome check

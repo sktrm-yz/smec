@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && bun scripts/prerender.tsx",
     "preview": "wrangler dev",
     "deploy": "bun run build && wrangler deploy",
     "test": "vitest run",
@@ -16,13 +16,17 @@
     "db:seed:remote": "wrangler d1 execute smec-db --remote --file ./seed/seed.sql"
   },
   "dependencies": {
+    "@humation/assets-humation-1": "^1.0.1",
+    "@humation/core": "^1.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "hono": "^4.8.0",
+    "lucide-react": "^1.31.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.6.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 -- sections: 1次試験の科目
-CREATE TABLE sections (
+CREATE TABLE smec_sections (
   id INTEGER PRIMARY KEY,
   slug TEXT UNIQUE NOT NULL,
   name TEXT NOT NULL,
@@ -8,9 +8,9 @@ CREATE TABLE sections (
 );
 
 -- articles: 記事。body が NULL のものは「準備中」
-CREATE TABLE articles (
+CREATE TABLE smec_articles (
   id INTEGER PRIMARY KEY,
-  section_id INTEGER NOT NULL REFERENCES sections(id),
+  section_id INTEGER NOT NULL REFERENCES smec_sections(id),
   slug TEXT UNIQUE NOT NULL,
   title TEXT NOT NULL,
   summary TEXT NOT NULL,
@@ -19,9 +19,9 @@ CREATE TABLE articles (
 );
 
 -- questions: 記事ごとの3択練習問題。choices は JSON 配列
-CREATE TABLE questions (
+CREATE TABLE smec_questions (
   id INTEGER PRIMARY KEY,
-  article_id INTEGER NOT NULL REFERENCES articles(id),
+  article_id INTEGER NOT NULL REFERENCES smec_articles(id),
   question TEXT NOT NULL,
   choices TEXT NOT NULL,
   answer_index INTEGER NOT NULL,
@@ -29,5 +29,5 @@ CREATE TABLE questions (
   sort_order INTEGER NOT NULL
 );
 
-CREATE INDEX idx_articles_section ON articles(section_id, sort_order);
-CREATE INDEX idx_questions_article ON questions(article_id, sort_order);
+CREATE INDEX idx_smec_articles_section ON smec_articles(section_id, sort_order);
+CREATE INDEX idx_smec_questions_article ON smec_questions(article_id, sort_order);

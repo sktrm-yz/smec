@@ -18,8 +18,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "smec-db",
-      "database_id": "6131fc01-8d01-4ef3-84f7-7bc26bc1075d",
+      "database_name": "common-db",
+      "database_id": "04a5f76e-26f6-4f44-ae2b-799138ed9b07",
       "migrations_dir": "./migrations"
     }
   ],

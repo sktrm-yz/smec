@@ -21,7 +21,7 @@ const SITE_NAME = "中小企業診断士 学習ノート";
 
 function d1Query<T>(sql: string): T[] {
   const out = execSync(
-    `bunx wrangler d1 execute smec-db --local --json --command "${sql}"`,
+    `bunx wrangler d1 execute common-db --local --json --command "${sql}"`,
     { cwd: ROOT, encoding: "utf8", env: { ...process.env, CI: "1" } },
   );
   const parsed = JSON.parse(out) as { results: T[] }[];
@@ -57,13 +57,13 @@ function renderPage(
 }
 
 const sections = d1Query<SectionRow>(
-  "SELECT id, slug, name, description, sort_order FROM sections",
+  "SELECT id, slug, name, description, sort_order FROM smec_sections",
 );
 const articles = d1Query<ArticleRow>(
-  "SELECT id, section_id, slug, title, summary, body, sort_order FROM articles",
+  "SELECT id, section_id, slug, title, summary, body, sort_order FROM smec_articles",
 );
 const questions = d1Query<QuestionRow>(
-  "SELECT id, article_id, question, choices, answer_index, explanation FROM questions ORDER BY sort_order",
+  "SELECT id, article_id, question, choices, answer_index, explanation FROM smec_questions ORDER BY sort_order",
 );
 
 if (sections.length === 0) {

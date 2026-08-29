@@ -9,11 +9,13 @@ type Env = {
 async function loadRows(db: D1Database) {
   const [sections, articles] = await Promise.all([
     db
-      .prepare("SELECT id, slug, name, description, sort_order FROM sections")
+      .prepare(
+        "SELECT id, slug, name, description, sort_order FROM smec_sections",
+      )
       .all<SectionRow>(),
     db
       .prepare(
-        "SELECT id, section_id, slug, title, summary, body, sort_order FROM articles",
+        "SELECT id, section_id, slug, title, summary, body, sort_order FROM smec_articles",
       )
       .all<ArticleRow>(),
   ]);
@@ -35,7 +37,7 @@ export function createApi() {
     if (!target) return c.json({ error: "not found" }, 404);
 
     const { results: questions } = await c.env.DB.prepare(
-      "SELECT id, article_id, question, choices, answer_index, explanation FROM questions WHERE article_id = ? ORDER BY sort_order",
+      "SELECT id, article_id, question, choices, answer_index, explanation FROM smec_questions WHERE article_id = ? ORDER BY sort_order",
     )
       .bind(target.id)
       .all<QuestionRow>();

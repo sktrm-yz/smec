@@ -7,7 +7,7 @@ const seed = readFileSync(new URL("../seed/seed.sql", import.meta.url), "utf8");
 describe("seed.sql", () => {
   it("7科目が定義されている", () => {
     const sections = seed.match(/\(\d+, '[a-z-]+', '[^']+', '[^']+', \d+\)/g);
-    expect(seed).toContain("INSERT INTO sections");
+    expect(seed).toContain("INSERT INTO smec_sections");
     expect(sections?.length).toBeGreaterThanOrEqual(7);
   });
 

@@ -1,12 +1,12 @@
 -- シードデータ（再実行可能: 全削除してから投入）
-DELETE FROM questions;
-DELETE FROM articles;
-DELETE FROM sections;
+DELETE FROM smec_questions;
+DELETE FROM smec_articles;
+DELETE FROM smec_sections;
 
 -- ============================================================
 -- 科目（1次試験のシラバス順）
 -- ============================================================
-INSERT INTO sections (id, slug, name, description, sort_order) VALUES
+INSERT INTO smec_sections (id, slug, name, description, sort_order) VALUES
   (1, 'economics', '経済学・経済政策', 'ミクロ経済学とマクロ経済学の基礎。市場の仕組みや国全体の経済の動きを学ぶ。', 1),
   (2, 'finance', '財務・会計', '簿記・財務諸表の読み方から、経営分析・投資判断・企業価値まで、お金にまつわる知識を学ぶ。', 2),
   (3, 'management', '企業経営理論', '経営戦略・組織論・マーケティング。診断士の中心となる科目で、2次試験にも直結する。', 3),
@@ -18,7 +18,7 @@ INSERT INTO sections (id, slug, name, description, sort_order) VALUES
 -- ============================================================
 -- 記事: 経済学・経済政策（最初の3本は本文あり）
 -- ============================================================
-INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VALUES
+INSERT INTO smec_articles (id, section_id, slug, title, summary, body, sort_order) VALUES
   (101, 1, 'econ-intro', '経済学入門 — ミクロとマクロの全体像', '経済学の2つの柱、ミクロ経済学とマクロ経済学の違いと学習マップを押さえる。',
 '## この記事で学ぶこと
 
@@ -481,7 +481,7 @@ AD と AS の交点で、**物価水準とGDPが同時に決まります**。
 -- ============================================================
 -- 記事: 財務・会計
 -- ============================================================
-INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VALUES
+INSERT INTO smec_articles (id, section_id, slug, title, summary, body, sort_order) VALUES
   (201, 2, 'fin-bookkeeping', '簿記の基本 — 仕訳と勘定科目', '複式簿記の仕組みと仕訳のルールを、取引例で理解する。',
 '## 会社のお金の動きを記録する技術
 
@@ -925,7 +925,7 @@ DCF法と同じ「割る」構造であることがわかります。
 -- ============================================================
 -- 記事: 企業経営理論
 -- ============================================================
-INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VALUES
+INSERT INTO smec_articles (id, section_id, slug, title, summary, body, sort_order) VALUES
   (301, 3, 'mgmt-strategy-intro', '経営戦略の全体像', '経営理念・ビジョンから戦略の階層まで、戦略論の全体像をつかむ。', NULL, 301),
   (302, 3, 'mgmt-growth', '成長戦略とドメイン', 'アンゾフの成長ベクトル、多角化、ドメインの定義を学ぶ。', NULL, 302),
   (303, 3, 'mgmt-competitive', '競争戦略 — ポーターの3つの基本戦略', '5フォース分析と、コストリーダーシップ・差別化・集中戦略を学ぶ。', NULL, 303),
@@ -942,7 +942,7 @@ INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VA
 -- ============================================================
 -- 記事: 運営管理
 -- ============================================================
-INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VALUES
+INSERT INTO smec_articles (id, section_id, slug, title, summary, body, sort_order) VALUES
   (401, 4, 'ops-intro', '生産管理の全体像', '生産管理の目的（QCD）と管理活動の全体像をつかむ。', NULL, 401),
   (402, 4, 'ops-system', '生産方式と生産形態', '受注生産と見込生産、ライン生産とセル生産などの分類を学ぶ。', NULL, 402),
   (403, 4, 'ops-layout-planning', '工場レイアウトと生産計画', 'SLPによるレイアウト設計と、生産計画・生産統制の流れを学ぶ。', NULL, 403),
@@ -957,7 +957,7 @@ INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VA
 -- ============================================================
 -- 記事: 経営法務
 -- ============================================================
-INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VALUES
+INSERT INTO smec_articles (id, section_id, slug, title, summary, body, sort_order) VALUES
   (501, 5, 'law-company-basic', '会社法の基礎 — 株式会社の仕組み', '株式会社の特徴、設立手続、株式と株主の権利を学ぶ。', NULL, 501),
   (502, 5, 'law-organs', '会社の機関設計', '株主総会・取締役会・監査役など、機関の役割と設計ルールを学ぶ。', NULL, 502),
   (503, 5, 'law-ma', '組織再編とM&A', '合併・会社分割・株式交換などの組織再編手法を学ぶ。', NULL, 503),
@@ -971,7 +971,7 @@ INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VA
 -- ============================================================
 -- 記事: 経営情報システム
 -- ============================================================
-INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VALUES
+INSERT INTO smec_articles (id, section_id, slug, title, summary, body, sort_order) VALUES
   (601, 6, 'it-hardware', 'コンピュータの基礎 — ハードウェア', 'CPU・メモリ・記憶装置など、コンピュータの構成要素を学ぶ。', NULL, 601),
   (602, 6, 'it-software', 'ソフトウェアとプログラミング', 'OSの役割、プログラミング言語、Webの仕組みを学ぶ。', NULL, 602),
   (603, 6, 'it-database', 'データベース', 'リレーショナルデータベースの設計とSQLの基礎を学ぶ。', NULL, 603),
@@ -984,7 +984,7 @@ INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VA
 -- ============================================================
 -- 記事: 中小企業経営・中小企業政策
 -- ============================================================
-INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VALUES
+INSERT INTO smec_articles (id, section_id, slug, title, summary, body, sort_order) VALUES
   (701, 7, 'sme-definition', '中小企業の定義と現状', '中小企業基本法による定義と、日本経済における中小企業の位置づけを学ぶ。', NULL, 701),
   (702, 7, 'sme-whitepaper', '中小企業白書のポイント', '最新の中小企業白書から、出題されやすい統計とトピックを押さえる。', NULL, 702),
   (703, 7, 'sme-basic-law', '中小企業基本法と政策体系', '中小企業政策の基本理念と、政策の全体像を学ぶ。', NULL, 703),
@@ -996,7 +996,7 @@ INSERT INTO articles (id, section_id, slug, title, summary, body, sort_order) VA
 -- ============================================================
 -- 練習問題（本文ありの記事のみ）
 -- ============================================================
-INSERT INTO questions (id, article_id, question, choices, answer_index, explanation, sort_order) VALUES
+INSERT INTO smec_questions (id, article_id, question, choices, answer_index, explanation, sort_order) VALUES
   (1, 101, 'ミクロ経済学が主な分析対象とするものとして、最も適切なものはどれか。',
    '["国全体のGDPや物価の動き","個々の消費者や企業の行動と個別の市場","政府の予算編成のプロセス"]', 1,
    'ミクロ経済学は消費者・企業など個々のプレイヤーの行動と個別の市場を分析する。国全体のGDPや物価はマクロ経済学の対象。', 1),

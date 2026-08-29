@@ -10,10 +10,10 @@
     "test": "vitest run",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "db:migrate:local": "wrangler d1 migrations apply smec-db --local",
-    "db:migrate:remote": "wrangler d1 migrations apply smec-db --remote",
-    "db:seed:local": "wrangler d1 execute smec-db --local --file ./seed/seed.sql",
-    "db:seed:remote": "wrangler d1 execute smec-db --remote --file ./seed/seed.sql"
+    "db:migrate:local": "wrangler d1 migrations apply common-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply common-db --remote",
+    "db:seed:local": "wrangler d1 execute common-db --local --file ./seed/seed.sql",
+    "db:seed:remote": "wrangler d1 execute common-db --remote --file ./seed/seed.sql"
   },
   "dependencies": {
     "@humation/assets-humation-1": "^1.0.1",

@@ -6,9 +6,9 @@ type Row = Record<string, unknown>;
 // D1 の最小モック。SQL 文字列の特徴でどのクエリかを判定して結果を返す
 function fakeDb(data: { sections: Row[]; articles: Row[]; questions: Row[] }) {
   const run = (sql: string, params: unknown[]) => {
-    if (sql.includes("FROM sections")) return data.sections;
-    if (sql.includes("FROM articles")) return data.articles;
-    if (sql.includes("FROM questions")) {
+    if (sql.includes("FROM smec_sections")) return data.sections;
+    if (sql.includes("FROM smec_articles")) return data.articles;
+    if (sql.includes("FROM smec_questions")) {
       return data.questions.filter((q) => q.article_id === params[0]);
     }
     return [];

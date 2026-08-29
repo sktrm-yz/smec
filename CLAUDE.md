@@ -6,7 +6,7 @@
 
 - bun / React / Vite / Hono / Tailwind v4 / shadcn 風 UI / Biome / Vitest
 - Cloudflare Workers（静的アセット + `/api/*` を Hono が処理）
-- データは D1（`smec-db`）に格納し API で配信
+- データは D1（共用 `common-db` に `smec_` プレフィックスで相乗り）に格納し API で配信
 
 ## 構成
 
